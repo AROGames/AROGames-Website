@@ -1,0 +1,6 @@
+.jumbotron {
+  background-image: url("../Media/banner.png");
+  -webkit-box-shadow: 0 8px 6px -6px blue;
+	   -moz-box-shadow: 0 8px 6px -6px blue;
+	        box-shadow: 0 8px 6px -6px blue;
+}

@@ -6,49 +6,53 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap-4.0.0/dist/css/bootstrap-dark.min.css"/>
-    <link rel="stylesheet" href="../scss/custom.scss">
+    <!-- Overide Bootstrap CSS -->
+    <link rel="stylesheet" href="../Style/bootstrapOveride.css">
     <title>AROGames</title>
   </head>
   <body>
-    <div > <!-- Full Page Container -->
+    <!-- Full Page Container -->
+    <div class="container">
       <!-- Begin Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-info">
         <!--img src="..\Media\AROlogo.png" alt="AEOGames" class="navbar-brand" style="width: 8%;"-->
-        <p class="navbar-brand display-1">AROGames</p>
+        <a class="navbar-brand" href="#">AROGames</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Projects</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="https://playcubed.webflow.io" target="_blank">Cubed</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Plaing with Shaders</a>
-                    <a class="dropdown-item" href="#">Misc.</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-              </ul>
-          </div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Projects</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="https://playcubed.webflow.io" target="_blank">Cubed</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Plaing with Shaders</a>
+                  <a class="dropdown-item" href="#">Misc.</a>
+                </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
       </nav>
       <!-- End Navbar-->
       <!-- Begin Jumbotron/Hero Section-->
       <div class="jumbotron">
-          <h1 class="display-4">//ARO Games</h1>
-          <p class="lead">Coding. Creating. Sharing.</p>
+        <p class="typewrite display-4" data-period="2000" data-type='[ "//Welcome to AROGames", "//Coding", "//Creating", "//Sharing" ]'>
+          <span class="wrap"></span>
+        </p>
       </div>
+    </div>
       <!-- End Jumbotron/Hero Section -->
       <!-- Begin Main Page Content -->
       <!-- Begin Cards -->
@@ -111,5 +115,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="../bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script src="../Scripts/mainScript.js"></script>
   </body>
 </html>
