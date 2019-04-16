@@ -4,3 +4,17 @@
 	   -moz-box-shadow: 0 8px 6px -6px blue;
 	        box-shadow: 0 8px 6px -6px blue;
 }
+
+.text {
+  border-radius: 5px;
+  background-color: grey;
+  padding: 5%;
+  margin-bottom: 25px;
+}
+
+.text img {
+  align-self: center;
+  width: 100%;
+  margin-top:    20px;
+  margin-bottom: 20px;
+}
