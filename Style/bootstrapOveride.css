@@ -1,8 +1,8 @@
 .jumbotron {
   background-image: url("../Media/banner.png");
-  -webkit-box-shadow: 0 8px 6px -6px blue;
-	   -moz-box-shadow: 0 8px 6px -6px blue;
-	        box-shadow: 0 8px 6px -6px blue;
+  -webkit-box-shadow: 0 8px 6px -6px #3598db;
+	   -moz-box-shadow: 0 8px 6px -6px #3598db;
+	        box-shadow: 0 8px 6px -6px #3598db;
 }
 
 .text {
