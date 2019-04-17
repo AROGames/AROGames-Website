@@ -6,8 +6,23 @@ function loadHandler() {
   var post = getAllUrlParams(window.location.href).post;
   console.log("post: " + post);
 
+  var checking = true;
+  var i = 0;
+  while (checking) {
+    if (checkUrl("../Pages/blogPages/" + i + ".html")) {
+      blogPosts.push("../Pages/blogPages/" + i + ".html");
+    } else {
+      checking = false;
+    }
+    i++;
+  }
+
+  console.log(blogPosts);
+
   if (post == 0) {
     makeCards();
+  } else {
+    loadPost(post);
   }
 }
 
@@ -77,8 +92,8 @@ function getAllUrlParams(url) {
 }
 
 
-function addElement() {
-  var file = "../Pages/blogPages/example.html";
+function loadPost(post) {
+  var file = "../Pages/blogPages/1.html";
   var rawFile = new XMLHttpRequest();
   rawFile.open("GET", file, false);
   rawFile.onreadystatechange = function ()
@@ -88,7 +103,19 @@ function addElement() {
           if(rawFile.status === 200 || rawFile.status == 0)
           {
               var allText = rawFile.responseText;
-              document.getElementById("content").innerHTML = allText;
+
+              parser = new DOMParser();
+              doc = parser.parseFromString(allText, "text/html");
+
+              console.log("got here! - 0");
+
+              var metaTags = doc.getElementsByTagName('meta');
+
+              for (var i = 0; i < metaTags.length; i++) {
+                if (metaTags[i].getAttribute('name') == "post") {
+                  document.getElementById("content").innerHTML = allText;
+                }
+              }
           }
       }
   }
@@ -97,7 +124,7 @@ function addElement() {
 
 function getMeta(metaName) {
   var OUT;
-  var file = "../Pages/blogPages/example.html";
+  var file = "../Pages/blogPages/1.html";
   var rawFile = new XMLHttpRequest();
   rawFile.open("GET", file, false);
   rawFile.onreadystatechange = function ()
@@ -128,13 +155,30 @@ function getMeta(metaName) {
 
 function makeCards() {
   //for loop through all posts
-  var card = `<div class="col-sm-12 col-md-4">
+  var card =
+  `<div class="col-sm-12 col-md-4">
       <div class="card mb-4">
-          <div class="card-body text-center" onClick="addElement();" style="cursor: pointer;">
+          <a class="card-body text-center" href="?post=${getMeta("post")}#" style="cursor: pointer;">
               <h5 class="card-title">${getMeta("title")}</h5>
               <img src="${getMeta("thumbnail")}" alt="pic" style="width: 80%; margin-top: 5px; margin-bottom: 10px;">
-          </div>
+          </a>
       </div>
   </div>`;
   document.getElementById("cards").innerHTML = card;
+}
+
+function checkUrl(url) {
+      var request = false;
+      if (window.XMLHttpRequest) {
+              request = new XMLHttpRequest;
+      } else if (window.ActiveXObject) {
+              request = new ActiveXObject("Microsoft.XMLHttp");
+      }
+
+      if (request) {
+              request.open("GET", url);
+              if (request.status == 200) { return true; }
+      }
+
+      return false;
 }
