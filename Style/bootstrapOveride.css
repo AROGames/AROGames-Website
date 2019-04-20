@@ -1,3 +1,7 @@
+* :not(.display-4 nav){
+  font-family: 'Roboto Slab', serif;
+}
+
 .jumbotron {
   background-image: url("../Media/banner.png");
   -webkit-box-shadow: 0 8px 6px -6px #3598db;
@@ -17,4 +21,31 @@
   width: 100%;
   margin-top:    20px;
   margin-bottom: 20px;
+}
+
+.text video {
+  align-self: center;
+  width: 100%;
+  margin-top:    20px;
+  margin-bottom: 20px;
+}
+
+.text pre {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.text .question-div {
+  background-color: #434343ff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 8px 6px -6px #3598db;
+     -moz-box-shadow: 0 8px 6px -6px #3598db;
+          box-shadow: 0 8px 6px -6px #3598db;
+}
+
+.question-div :not(.question) {
+  font-style: italic;
 }

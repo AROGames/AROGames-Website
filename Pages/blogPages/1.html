@@ -1,21 +1,290 @@
-<meta name="date" content="2019-04-16" />
+<meta name="date" content="2019-04-19" />
 <meta name="author" content="Aidan Olsen" />
-<meta name="title" content="Example" />
-<meta name="tags" content="example,test" />
-<meta name="thumbnail" content="../Media/CubedGame.PNG" />
+<meta name="title" content="Filter Shader" />
+<meta name="tags" content="shader,test" />
+<meta name="thumbnail" content="..\Media\Black and White filter post media\final.jpg" />
+<meta name="teaseText" content="Learn how to make a shader that acts like a black and white filter!" />
 <meta name="post" content="1" />
 <div class="text">
-  <h1 class="display-4">Lorem Ipsum</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra pharetra massa massa ultricies mi. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Pharetra et ultrices neque ornare aenean euismod elementum nisi. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Purus non enim praesent elementum facilisis leo vel fringilla est. Eget mauris pharetra et ultrices neque ornare aenean euismod. Nulla aliquet enim tortor at auctor urna nunc id. Ullamcorper malesuada proin libero nunc. Dignissim convallis aenean et tortor at risus. Ut tristique et egestas quis ipsum suspendisse. Gravida quis blandit turpis cursus in hac habitasse platea dictumst. Purus viverra accumsan in nisl nisi scelerisque eu. Non pulvinar neque laoreet suspendisse interdum consectetur. Dolor sit amet consectetur adipiscing elit. Gravida neque convallis a cras semper. Consequat id porta nibh venenatis cras sed felis eget. Interdum posuere lorem ipsum dolor. Diam vulputate ut pharetra sit amet aliquam.
+  <p>Today we will be working on making a shader like the one below:</p>
+  <img src="..\Media\Black and White filter post media\final.jpg" alt="result picture"> <!-- TODO: Get Picture -->
+  <p><strong>Table of Contents</strong></p>
+  <ul>
+    <li><a href="#1">How Shaders Work</a></li>
+    <li><a href="#2">Scene Setup</a></li>
+    <li><a href="#3">Making The Shader</a></li>
+  </ul>
+  <br>
+  <h2 id="1">How Shaders Work</h2>
+
+  <p>Shaders are an important part of the rendering process, they decide what the shape of each object looks like, their colors, and shadows. </p>
+  <img src="..\Media\Black and White filter post media\render process 0.jpg" alt="process"> <!-- TODO: Get picture -->
+  <p>As you can see unity takes in some data about the object, then here is where we get to the shader, inside the shader we have 3 different steps, a vertex function, and then a vertex to fragment transformation, followed by a fragment function. After the shader step we get our rendered object.</p>
+  <img src="..\Media\Black and White filter post media\render process 1.jpg" alt="process"> <!-- TODO: Get picture -->
+  <p>One other cool thing that you can do with shaders is add custom data in the vertex and fragment functions, this is where we can create shaders that are affected by time, or in this case what is behind our object.
+<br><br>
+Now let's create our first shader open up the create menu in the project tab, go Create>Shader>Unlit Shader and name it ‘FilterShader’
 <br> <br>
-Velit scelerisque in dictum non. Morbi leo urna molestie at elementum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Donec massa sapien faucibus et molestie ac feugiat sed lectus. Phasellus vestibulum lorem sed risus ultricies tristique. Donec enim diam vulputate ut pharetra. Tempor id eu nisl nunc mi ipsum faucibus. Vitae congue eu consequat ac. Auctor eu augue ut lectus arcu. Sagittis eu volutpat odio facilisis mauris. Non nisi est sit amet facilisis. Id diam vel quam elementum pulvinar etiam non quam lacus. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Cursus in hac habitasse platea. Elementum curabitur vitae nunc sed velit dignissim sodales. Tempus quam pellentesque nec nam aliquam sem et tortor consequat. Nisi vitae suscipit tellus mauris a diam. Non pulvinar neque laoreet suspendisse. A scelerisque purus semper eget duis at. Diam in arcu cursus euismod quis viverra.
+Now we are going to get something that looks like this:
 </p>
-<img src="../Media/CubedGame.PNG" alt="pic">
-<p>
-Congue quisque egestas diam in arcu cursus euismod quis. Diam maecenas sed enim ut sem. Risus pretium quam vulputate dignissim suspendisse in est ante in. Consectetur adipiscing elit ut aliquam purus sit. Vestibulum sed arcu non odio euismod. Faucibus pulvinar elementum integer enim neque volutpat ac. Euismod nisi porta lorem mollis aliquam ut. Suspendisse ultrices gravida dictum fusce ut placerat orci. Ultricies leo integer malesuada nunc vel. Nunc sed blandit libero volutpat sed cras. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Nec feugiat nisl pretium fusce id. Duis convallis convallis tellus id interdum velit laoreet id. Imperdiet sed euismod nisi porta lorem mollis aliquam.
-<br> <br>
-Aliquam purus sit amet luctus venenatis lectus. Lacus sed turpis tincidunt id aliquet. Vitae nunc sed velit dignissim sodales ut. Suspendisse in est ante in nibh mauris cursus. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Dignissim sodales ut eu sem. Justo nec ultrices dui sapien. Dui sapien eget mi proin. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Non pulvinar neque laoreet suspendisse interdum consectetur libero. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Ut eu sem integer vitae justo. Elementum curabitur vitae nunc sed velit dignissim sodales ut eu. Euismod quis viverra nibh cras pulvinar mattis. Pharetra sit amet aliquam id diam maecenas ultricies mi. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor.
-<br> <br>
-<h1 class="display-4">Aliquam Purus</h1>
-Laoreet id donec ultrices tincidunt arcu non. At lectus urna duis convallis. Vel pretium lectus quam id. Ut consequat semper viverra nam libero justo laoreet sit. Convallis convallis tellus id interdum velit. Nunc consequat interdum varius sit amet mattis vulputate enim nulla. In nibh mauris cursus mattis molestie a iaculis at. Mauris a diam maecenas sed enim ut sem. Nisl purus in mollis nunc sed. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus et. Sit amet consectetur adipiscing elit. Odio ut enim blandit volutpat. Risus sed vulputate odio ut enim blandit volutpat. Tortor condimentum lacinia quis vel eros donec ac. Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat. Ac feugiat sed lectus vestibulum mattis. Quam quisque id diam vel. Nisi scelerisque eu ultrices vitae auctor eu.</p>
+
+<pre style="color:#000000;background:#f1f0f0;">Shader <span style="color:#800000; ">"</span><span style="color:#e60000; ">Unlit/FilterShader</span><span style="color:#800000; ">"</span>
+<span style="color:#806030; ">{</span>
+    Properties
+    <span style="color:#806030; ">{</span>
+        _MainTex <span style="color:#806030; ">(</span><span style="color:#800000; ">"</span><span style="color:#e60000; ">Texture</span><span style="color:#800000; ">"</span><span style="color:#806030; ">,</span> <span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">2D</span><span style="color:#806030; ">)</span> <span style="color:#806030; ">=</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">white</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">{</span><span style="color:#806030; ">}</span>
+    <span style="color:#806030; ">}</span>
+    SubShader
+    <span style="color:#806030; ">{</span>
+        Tags <span style="color:#806030; ">{</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">RenderType</span><span style="color:#800000; ">"</span><span style="color:#806030; ">=</span><span style="color:#800000; ">"</span><span style="color:#e60000; ">Opaque</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">}</span>
+        LOD <span style="color:#c00000; ">100</span>
+
+        Pass
+        <span style="color:#806030; ">{</span>
+            CGPROGRAM
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> vertex vert</span>
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> fragment frag</span>
+            <span style="color:#c34e00; ">// make fog work</span>
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> multi_compile_fog</span>
+
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">"</span><span style="color:#40015a; ">UnityCG.cginc</span><span style="color:#800000; ">"</span>
+
+            <span style="color:#400000; font-weight:bold; ">struct</span> appdata
+            <span style="color:#806030; ">{</span>
+                float4 vertex <span style="color:#806030; ">:</span> POSITION<span style="color:#806030; ">;</span>
+                float2 uv <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+
+            <span style="color:#400000; font-weight:bold; ">struct</span> v2f
+            <span style="color:#806030; ">{</span>
+                float2 uv <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+                UNITY_FOG_COORDS<span style="color:#806030; ">(</span><span style="color:#c00000; ">1</span><span style="color:#806030; ">)</span>
+                float4 vertex <span style="color:#806030; ">:</span> SV_POSITION<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+
+            sampler2D _MainTex<span style="color:#806030; ">;</span>
+            float4 _MainTex_ST<span style="color:#806030; ">;</span>
+
+            v2f vert <span style="color:#806030; ">(</span>appdata v<span style="color:#806030; ">)</span>
+            <span style="color:#806030; ">{</span>
+                v2f o<span style="color:#806030; ">;</span>
+                o<span style="color:#806030; ">.</span>vertex <span style="color:#806030; ">=</span> UnityObjectToClipPos<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                o<span style="color:#806030; ">.</span>uv <span style="color:#806030; ">=</span> TRANSFORM_TEX<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>uv<span style="color:#806030; ">,</span> _MainTex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                UNITY_TRANSFER_FOG<span style="color:#806030; ">(</span>o<span style="color:#806030; ">,</span>o<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#400000; font-weight:bold; ">return</span> o<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span>
+
+            fixed4 frag <span style="color:#806030; ">(</span>v2f i<span style="color:#806030; ">)</span> <span style="color:#806030; ">:</span> SV_Target
+            <span style="color:#806030; ">{</span>
+                <span style="color:#c34e00; ">// sample the texture</span>
+                fixed4 col <span style="color:#806030; ">=</span> tex2D<span style="color:#806030; ">(</span>_MainTex<span style="color:#806030; ">,</span> i<span style="color:#806030; ">.</span>uv<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#c34e00; ">// apply fog</span>
+                UNITY_APPLY_FOG<span style="color:#806030; ">(</span>i<span style="color:#806030; ">.</span>fogCoord<span style="color:#806030; ">,</span> col<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#400000; font-weight:bold; ">return</span> col<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span>
+            ENDCG
+        <span style="color:#806030; ">}</span>
+    <span style="color:#806030; ">}</span>
+<span style="color:#806030; ">}</span>
+</pre>
+<p>At first this may seem quite complicated but I am going to break this down for you</p>
+
+<pre style="color:#000000;background:#f1f0f0;">Shader <span style="color:#806030; ">{</span>
+<span style="color:#806030; ">.</span><span style="color:#806030; ">.</span><span style="color:#806030; ">.</span>
+<span style="color:#806030; ">}</span>
+</pre>
+
+<p>First of all we Have our --Shader-- section with brackets and some text.  This part is where all of our shader code goes.
+<br><br>
+Moving on we get the properties section, this is where unity reads the properties to show in the editor, and finds them in your Cg code, we will get to that in a minute.
+</p>
+
+<pre style="color:#000000;background:#f1f0f0;">Properties <span style="color:#806030; ">{</span>
+    _MainTex <span style="color:#806030; ">(</span>“Texture”<span style="color:#806030; ">,</span> <span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">2D</span><span style="color:#806030; ">)</span> <span style="color:#806030; ">=</span> “white” <span style="color:#806030; ">{</span><span style="color:#806030; ">}</span>
+<span style="color:#806030; ">}</span>
+</pre>
+<p>Now we have the SubShader section in here we have a few things, a tags section, a LOD statement, and a Pass section. The tags section and LOD statement says some basic stuff about the shader and this is just for the unity renderer. The Pass section is where we start to do stuff with our shaders, and you can actually have more than one of these but that is another topic for a different post. In here we have quite a bit going on, in between the CGPROGRAM and ENDCG statements is where we have the code that runs on the GPU! We also have two pragma statements:
+</p>
+
+<pre style="color:#000000;background:#f1f0f0;"><span style="color:#004a43; ">            </span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> vertex vert</span>
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> fragment frag</span>
+</pre>
+<p>This where we define our vertex and fragment function</p>
+  <img src="..\Media\Black and White filter post media\render process 2.jpg" alt="process"> <!-- TODO: Get picture -->
+<p>If we skip a little bit we can see those two different functions:</p>
+
+<pre style="color:#000000;background:#f1f0f0;">            v2f vert <span style="color:#806030; ">(</span>appdata v<span style="color:#806030; ">)</span> <span style="color:#c34e00; ">// vertex function</span>
+
+            fixed4 frag <span style="color:#806030; ">(</span>v2f i<span style="color:#806030; ">)</span> <span style="color:#806030; ">:</span> SV_Target <span style="color:#c34e00; ">// fragment function</span>
+</pre>
+<p>Just like our diagram said:</p>
+  <img src="..\Media\Black and White filter post media\render process 3.jpg" alt="process"> <!-- TODO: Get picture -->
+<p>Lastly we have our variables and an include tag,</p>
+
+<pre style="color:#000000;background:#f1f0f0;"><span style="color:#004a43; ">    </span><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include</span><span style="color:#004a43; "> “UnityCG</span><span style="color:#806030; ">.</span><span style="color:#004a43; ">cginc” </span><span style="color:#c34e00; ">// this gives us some unity helper variables</span>
+
+    sampler2D _MainTex<span style="color:#806030; ">;</span>
+    float4 _MainTex_ST<span style="color:#806030; ">;</span>
+</pre>
+<p>Do you remember from the --Properties-- section from above? And how about the variable that was in there ‘_MainTex’. We can imagine this variable like its a public variable in C# in the terms that it appears in an inspector. But we also have a _MainTex_ST variable, and that is like a private variable in the terms that it won’t appear in the inspector.
+<br><br>
+Finally we have all the juicy code in our structs and functions.
+<br><br>
+The struts hold data about or object and all the data we pass between our vertex and fragment function.
+<br><br>
+Then we have the vert function, this returns a v2f, and it gets a little confusing here, but what we are basically doing is turning our mesh into a rasterized image:
+</p>
+
+<div class="question-div">
+  <p class="question">What does it mmean to rasterize a mesh?</p>
+<p> Let's first start with the idea of a 2D mesh, in a 2D mesh we have a bunch of dots showing where all of the vertices are:</p>
+  <img src="..\Media\Black and White filter post media\rasterization 0.png" alt="process"> <!-- TODO: Get picture -->
+<p>Now we want to turn this into an image, we will lay pixels to cover the area of this, the process of <strong>rasterizing</strong>. </p>
+  <img src="..\Media\Black and White filter post media\rasterization 1.png" alt="process"> <!-- TODO: Get picture -->
+<p>Now we have our fragment function and it takes in that rasterized data and ‘colors it in.’ We start with our texture, and get the pixel in that texture that corresponds to its uv or position on the image. Finally we return the color. This is called a fixed4, colors in shaders are represented by 4 different numbers (x, y, z, w) or (r, g, b, a), colors can also be represented as half4, or float4 variables.</p>
+</div>
+
+<div class="question-div">
+  <p class="question">What is the difference between a float, fixed, or half?</p>
+  <ul>
+    <li>float - a 32bit floating point number</li>
+    <li>half - a 16bit floating point number</li>
+    <li>fixed - a 12bit fixed point number</li>
+  </ul>
+</div>
+
+<p>One thing to realize with this function is that it gets called once per pixel every frame, you are probably thinking “how can that run at 30 to 60 frames a second?” This is because the gpu have many ‘mini cpus’ in it that aren’t very powerful individually, but put together they can run in parallel, meaning each pixel can get its own ‘mini cpu’ allowing for very fast run speeds.
+<br><br>
+Also if your wondering why I’ve skipped over the fog stuff that's because we don’t need it here, it might be something I’ll cover later, or for you to do your own research on.
+<br><br>
+Lastly we have made a  shader but in order for unity to make a proper connection with it you need to make a material, and then in the top tab where it says shader:
+</p>
+  <img src="..\Media\Black and White filter post media\shader selection.jpg" alt="process"> <!-- TODO: Get picture -->
+<p>Click on that and navigate to Unlit>FilterShader and click FilterShader.</p>
+  <h2 id="2">Scene Setup</h2>
+<p>If you skipped the part where we break down how a shader works then just make an unlit shader, and call it ‘FilterShader’.
+<br><br>
+Now that we have a shader and that shader is plugged into a material, I set up a basic scene with some cubes in the background that have basic standard unit materials of different colors to demonstrate how the filter actually works, as well as a plane for the floor or ground.
+</p>
+  <img src="" alt="process"> <!-- TODO: Get picture -->
+  <h2 id="3">Making the Shader</h2>
+  <p>Right now you should have a black object in its scene, now it's time to use some of our shader magic, first in the shader code remove everything that has to do with fog, so it should look like this:</p>
+
+<pre style="color:#000000;background:#f1f0f0;">Shader <span style="color:#800000; ">"</span><span style="color:#e60000; ">Unlit/FilterShader</span><span style="color:#800000; ">"</span>
+<span style="color:#806030; ">{</span>
+    Properties
+    <span style="color:#806030; ">{</span>
+        _MainTex <span style="color:#806030; ">(</span><span style="color:#800000; ">"</span><span style="color:#e60000; ">Texture</span><span style="color:#800000; ">"</span><span style="color:#806030; ">,</span> <span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">2D</span><span style="color:#806030; ">)</span> <span style="color:#806030; ">=</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">white</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">{</span><span style="color:#806030; ">}</span>
+    <span style="color:#806030; ">}</span>
+    SubShader
+    <span style="color:#806030; ">{</span>
+        Tags <span style="color:#806030; ">{</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">RenderType</span><span style="color:#800000; ">"</span><span style="color:#806030; ">=</span><span style="color:#800000; ">"</span><span style="color:#e60000; ">Opaque</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">}</span>
+        LOD <span style="color:#c00000; ">100</span>
+
+        Pass
+        <span style="color:#806030; ">{</span>
+            CGPROGRAM
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> vertex vert</span>
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> fragment frag</span>
+
+<span style="color:#004a43; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">"</span><span style="color:#40015a; ">UnityCG.cginc</span><span style="color:#800000; ">"</span>
+
+            <span style="color:#400000; font-weight:bold; ">struct</span> appdata
+            <span style="color:#806030; ">{</span>
+                float4 vertex <span style="color:#806030; ">:</span> POSITION<span style="color:#806030; ">;</span>
+                float2 uv <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+
+            <span style="color:#400000; font-weight:bold; ">struct</span> v2f
+            <span style="color:#806030; ">{</span>
+                float2 uv <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+                float4 vertex <span style="color:#806030; ">:</span> SV_POSITION<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+
+            sampler2D _MainTex<span style="color:#806030; ">;</span>
+            float4 _MainTex_ST<span style="color:#806030; ">;</span>
+
+            v2f vert <span style="color:#806030; ">(</span>appdata v<span style="color:#806030; ">)</span>
+            <span style="color:#806030; ">{</span>
+                v2f o<span style="color:#806030; ">;</span>
+                o<span style="color:#806030; ">.</span>vertex <span style="color:#806030; ">=</span> UnityObjectToClipPos<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                o<span style="color:#806030; ">.</span>uv <span style="color:#806030; ">=</span> TRANSFORM_TEX<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>uv<span style="color:#806030; ">,</span> _MainTex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#400000; font-weight:bold; ">return</span> o<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span>
+
+            fixed4 frag <span style="color:#806030; ">(</span>v2f i<span style="color:#806030; ">)</span> <span style="color:#806030; ">:</span> SV_Target
+            <span style="color:#806030; ">{</span>
+                <span style="color:#c34e00; ">// sample the texture</span>
+                fixed4 col <span style="color:#806030; ">=</span> tex2D<span style="color:#806030; ">(</span>_MainTex<span style="color:#806030; ">,</span> i<span style="color:#806030; ">.</span>uv<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#400000; font-weight:bold; ">return</span> col<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span>
+            ENDCG
+        <span style="color:#806030; ">}</span>
+    <span style="color:#806030; ">}</span>
+<span style="color:#806030; ">}</span>
+</pre>
+<p>And let's make this shader transparent, what this does is we want to tell the unity renderer to render this object last so we then know what behind the object looks like.  In the tags change</p>
+
+<pre style="color:#000000;background:#f1f0f0;">    Tags <span style="color:#806030; ">{</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">RenderType</span><span style="color:#800000; ">"</span><span style="color:#806030; ">=</span><span style="color:#800000; ">"</span><span style="color:#e60000; ">Opaque</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">}</span>
+</pre>
+<p>to</p>
+
+<pre style="color:#000000;background:#f1f0f0;">    Tags <span style="color:#806030; ">{</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">Queue</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">=</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">Transparent</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">}</span>
+</pre>
+<p>And we are going to add something called a grab pass between the tags, and pass. A grab pass essentially grabs the texture behind the object (why we render this object last) and puts the result into a texture. We will call that texture _BackgroundTexture</p>
+
+<pre style="color:#000000;background:#f1f0f0;">        GrabPass
+        <span style="color:#806030; ">{</span>
+            <span style="color:#800000; ">"</span><span style="color:#e60000; ">_BackgroundTexture</span><span style="color:#800000; ">"</span>
+        <span style="color:#806030; ">}</span>
+</pre>
+
+<p>Now we will also want to reference this texture in our Cg section. We also won’t want the main texture, and the _Maintex_ST variable so delete them and make a new 2D texture variable called _BackgroundTexture, it has to be the exact same name as we put into the grab pass</p>
+
+<pre style="color:#000000;background:#f1f0f0;">    sampler2D _BackgroundTexture
+</pre>
+
+
+<div class="question-div">
+  <p class="question">Why do we say sampler 2D?</p>
+  <p>We say sampler2D because the terminology of reading data from an image with shaders is called sampling, and since this is a 2D image (yes, 3D images do exist) we call it a sampler2D.</p>
+</div>
+<p>Now since we took out the _MainTex variable in the code we don’t want unity yelling at us because it can’t find it, and also since we won’t be needing any other properties coming from the unity inspector we can just delete the properties section all together.</p>
+<p>Now in the fragment function lets take the _MainTex variable, and replace it with _BackgroundTexture. Lets save everything and just before we move back into unity we need to do a little behind the scenes magic so that we properly lay our background texture on the object.
+<br><br>
+You can delete the appdata struct, we will use a default one so there is no need to specify a custom one, and we will do a little update to our vertex function, the new one will look like this.
+</p>
+
+<pre style="color:#000000;background:#f1f0f0;">            v2f vert<span style="color:#806030; ">(</span>appdata_base v<span style="color:#806030; ">)</span> <span style="color:#806030; ">{</span>
+                v2f o<span style="color:#806030; ">;</span>
+                <span style="color:#c34e00; ">// use UnityObjectToClipPos from UnityCG.cginc to calculate</span>
+                <span style="color:#c34e00; ">// the clip-space of the vertex</span>
+                o<span style="color:#806030; ">.</span>pos <span style="color:#806030; ">=</span> UnityObjectToClipPos<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#c34e00; ">// use ComputeGrabScreenPos function from UnityCG.cginc</span>
+                <span style="color:#c34e00; ">// to get the correct texture coordinate</span>
+                o<span style="color:#806030; ">.</span>grabPos <span style="color:#806030; ">=</span> ComputeGrabScreenPos<span style="color:#806030; ">(</span>o<span style="color:#806030; ">.</span>pos<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                <span style="color:#400000; font-weight:bold; ">return</span> o<span style="color:#806030; ">;</span>
+            <span style="color:#806030; ">}</span>
+</pre>
+<p>Now if we save everything and move back into unity:</p>
+  <img src="" alt="process"> <!-- TODO: Get picture -->
+<p>You will realize pretty quick that the cube has disappeared, this is because we are just showing whats behind our cube, and it looks like nothing is there, or in other words we just made a perfectly transparent material. Now we want to find a way to turn this background texture into a black and white texture, making the cube a black and white filter. Let’s head back to the shader.
+<br><br>
+Right now I want to make a separate step where we apply a filter, so lets create a new variable and we can call it OUT, since this will be the color out, and let's have the fragment function return OUT rather than col.
+</p>
+
+<pre style="color:#000000;background:#f1f0f0;">    fixed4 OUT<span style="color:#806030; ">;</span>
+    <span style="color:#c34e00; ">//Filter step</span>
+    <span style="color:#400000; font-weight:bold; ">return</span> OUT<span style="color:#806030; ">;</span>
+</pre>
+<p>If we want to make something black and white let's think about how a color camera works vs a black and white camera. In a color camera we have 3 sensors per pixel, one for red, one for green, and one for blue. In a black and white camera we are unable to separate those colors so we just end up with a mixture, or average of it all. Now back in our shader; if we can find the average between the red, green, and blue colors then we have made our black and white filter!</p>
+
+<pre style="color:#000000;background:#f1f0f0;">    <span style="color:#c34e00; ">//Filter step</span>
+    fixed3 average <span style="color:#806030; ">=</span> col<span style="color:#806030; ">.</span>rgb <span style="color:#806030; ">/</span> <span style="color:#c00000; ">3</span><span style="color:#806030; ">;</span> <span style="color:#c34e00; ">//mean average of color values</span>
+    OUT <span style="color:#806030; ">=</span> fixed4<span style="color:#806030; ">(</span>average<span style="color:#806030; ">,</span> <span style="color:#c00000; ">1</span><span style="color:#806030; ">)</span><span style="color:#806030; ">;</span> <span style="color:#c34e00; ">//return color and have an alpha value of one.</span>
+
+</pre>
+<p>There we go, with a little camera animation we have our final filter, try playing around with mixing different color channels together, using different averaging techniques, or making entire color channels a set number.</p>
+  <img src="..\Media\Black and White filter post media\final.jpg" alt="result picture">
+  <p>Have fun!</p>
 </div>

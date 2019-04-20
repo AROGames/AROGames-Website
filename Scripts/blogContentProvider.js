@@ -4,10 +4,14 @@ var blogPosts = [];
 
 function loadHandler() {
   var post = getAllUrlParams(window.location.href).post;
-  console.log("post: " + post);
 
+  if (post == 0 || post == null) {
+    setTimeout(function(){makeCards()}, 1500);
+  } else {
+    loadPost(post);
+  }
   var checking = true;
-  var i = 0;
+  var i = 1;
   while (checking) {
     if (checkUrl("../Pages/blogPages/" + i + ".html")) {
       blogPosts.push("../Pages/blogPages/" + i + ".html");
@@ -15,14 +19,6 @@ function loadHandler() {
       checking = false;
     }
     i++;
-  }
-
-  console.log(blogPosts);
-
-  if (post == 0) {
-    makeCards();
-  } else {
-    loadPost(post);
   }
 }
 
@@ -93,7 +89,7 @@ function getAllUrlParams(url) {
 
 
 function loadPost(post) {
-  var file = "../Pages/blogPages/1.html";
+  var file = "../Pages/blogPages/"+post+".html";
   var rawFile = new XMLHttpRequest();
   rawFile.open("GET", file, false);
   rawFile.onreadystatechange = function ()
@@ -107,13 +103,12 @@ function loadPost(post) {
               parser = new DOMParser();
               doc = parser.parseFromString(allText, "text/html");
 
-              console.log("got here! - 0");
-
               var metaTags = doc.getElementsByTagName('meta');
 
               for (var i = 0; i < metaTags.length; i++) {
                 if (metaTags[i].getAttribute('name') == "post") {
                   document.getElementById("content").innerHTML = allText;
+                  setTimeout(topFunction, 50);
                 }
               }
           }
@@ -122,9 +117,9 @@ function loadPost(post) {
   rawFile.send(null);
 }
 
-function getMeta(metaName) {
+function getMeta(metaName, file) {
   var OUT;
-  var file = "../Pages/blogPages/1.html";
+  //var file = "../Pages/blogPages/1.html";
   var rawFile = new XMLHttpRequest();
   rawFile.open("GET", file, false);
   rawFile.onreadystatechange = function ()
@@ -154,31 +149,45 @@ function getMeta(metaName) {
 }
 
 function makeCards() {
-  //for loop through all posts
-  var card =
-  `<div class="col-sm-12 col-md-4">
-      <div class="card mb-4">
-          <a class="card-body text-center" href="?post=${getMeta("post")}#" style="cursor: pointer;">
-              <h5 class="card-title">${getMeta("title")}</h5>
-              <img src="${getMeta("thumbnail")}" alt="pic" style="width: 80%; margin-top: 5px; margin-bottom: 10px;">
-          </a>
+  document.getElementById("cards").innerHTML = "";
+  for (var i = 0; i < blogPosts.length; i++) {
+    var card =
+    `
+    <!-- Begin Card -->
+    <div class="row no-gutters bg-light position-relative">
+      <div class="col-md-6 mb-md-0 p-md-4">
+        <img src="${getMeta("thumbnail", blogPosts[i])}" class="w-100" alt="thumbnail">
       </div>
-  </div>`;
-  document.getElementById("cards").innerHTML = card;
+      <div class="col-md-6 position-static p-4 pl-md-0">
+        <h5 class="mt-0">${getMeta("title", blogPosts[i])}</h5>
+        <p>${getMeta("teaseText", blogPosts[i])}</p>
+        <a href="${"?post=" + getMeta("post", blogPosts[i]) + "#"}" class="btn btn-info stretched-link">View</a>
+      </div>
+    </div>
+    <!-- End Card -->
+    `;
+    document.getElementById("cards").innerHTML += card;
+  }
 }
 
 function checkUrl(url) {
-      var request = false;
-      if (window.XMLHttpRequest) {
-              request = new XMLHttpRequest;
-      } else if (window.ActiveXObject) {
-              request = new ActiveXObject("Microsoft.XMLHttp");
-      }
-
-      if (request) {
-              request.open("GET", url);
-              if (request.status == 200) { return true; }
-      }
-
+  var request;
+  if(window.XMLHttpRequest)
+      request = new XMLHttpRequest();
+  else
+      request = new ActiveXObject("Microsoft.XMLHTTP");
+  request.open('GET', url, false);
+  request.send(); // there will be a 'pause' here until the response to come.
+  // the object request will be actually modified
+  if (request.status === 404) {
       return false;
+  }
+  else {
+    return true;
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
