@@ -161,7 +161,7 @@ function makeCards() {
       <div class="col-md-6 position-static p-4 pl-md-0">
         <h5 class="mt-0">${getMeta("title", blogPosts[i])}</h5>
         <p>${getMeta("teaseText", blogPosts[i])}</p>
-        <a href="${"?post=" + getMeta("post", blogPosts[i]) + "#"}" class="btn btn-info stretched-link">View</a>
+        <a href="${"?post=" + getMeta("post", blogPosts[i]) + "#"}" class="btn btn-info stretched-link">Read</a>
       </div>
     </div>
     <!-- End Card -->
