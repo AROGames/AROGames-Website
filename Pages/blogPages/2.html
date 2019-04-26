@@ -1,0 +1,89 @@
+<meta name="date" content="2019-04-25" />
+<meta name="author" content="Aidan Olsen" />
+<meta name="title" content="Low-Poly Island" />
+<meta name="tags" content="blender,modeling,low-poly" />
+<meta name="thumbnail" content="../Media/low-poly-island/thumbnail.jpg" />
+<meta name="teaseText" content="Learn how to make this really fun low poly island scene in Blender!" />
+<meta name="post" content="2" />
+<div class="text">
+  <p>Today we will be making this low poly island, in a day, night, morning, and evening scenes. These are perfect for practicing your modeling, or make a beautiful screensaver!</p>
+
+  <img src="..\Media\low-poly-island\thumbnail.jpg" alt="">
+
+  <h3>Table of Contents</h3>
+  <ul>
+    <li>Making the island</li>
+    <li>Making the water</li>
+    <li>Adding our skybox</li>
+  </ul>
+
+  <h1>Making the Island</h1>
+
+  <p>To start I deleted everything, I also switched to cycles, and then created an icosphere</p>
+
+  <img src="..\Media\low-poly-island\start.jpg" alt="">
+
+  <p>Most of the island shaping will come from sculpting. You will want to turn symmetry off, and dyntopo to constant detail rather than relative detail, I also set the resolution setting to 3.2. I first made a flat area with the flattening tool.</p>
+
+  <img src="..\Media\low-poly-island\flat.jpg" alt="">
+
+  <p>Then we will use the sculpt/draw tool to make out landscape, in the back I added peaks for mountains, some bumpier hills in the middle and a drop down for the beach. All of this comes from taste, so play around with it a little, use 'CTRL+Z' or 'CMD+Z' to undo anything if you don’t like how something looks. In the end I wanted a little less triangles in the mesh, so I used a Decimate modifier. This is what I got:</p>
+
+  <img src="..\Media\low-poly-island\model.png" alt="">
+
+  <p>Time for shading! I created 4 different shaders for grass, rock, ice, and sand:</p>
+
+  <img src="..\Media\low-poly-island\mats.jpg" alt="">
+
+  <p>You can create as many or few as you like, and give them any effect you wish. I went for a nice a miniature flat effect. Once again feel free to play around with this, it's your project! To apply these shaders to individual parts of the mesh, enter edit mode and you can use the shortcut 'C' to brush select different parts of the mesh, and then you can click <strong>Assign</strong> in the materials tab.</p>
+
+  <img src="..\Media\low-poly-island\applying-mats.gif" alt="">
+
+
+  <h1>Making the Water</h1>
+
+  <p>Our water is going to be comprised of two parts, our wave displacement, and the water shader. Let's start with the displacement. First of all we will need a nice water box like the one below:</p>
+
+  <img src="..\Media\low-poly-island\waterbox.jpg" alt="">
+
+  <p>From here we will add some detail to the top, I selected the top face in edit mode, and by pressing 'W' we get an option to subdivide.</p>
+
+  <img src="..\Media\low-poly-island\subdivide.jpg" alt="">
+
+  <p>Make sure to keep the entire top face selected, and then open the modifiers tab, and add a displace modifier, and set the displace texture to the default ‘Tex.’</p>
+
+  <img src="..\Media\low-poly-island\displace.gif" alt="">
+
+  <p>Open up the textures tab, and make sure your editing the same texture that was assigned to the displace modifier. We have some default texture types that Blender has for us, we will be using the cloud texture.</p>
+
+  <img src="..\Media\low-poly-island\cloudtex.jpg" alt="">
+
+  <p>Feel free to adjust some settings in both the displace modifier and cloud texture so it fits what you like, you might have to adjust these later if you decide to change some sizing in the ocean, one thing to note if you do end up the water box size is to subdivide the top more to keep detail in the water.
+  <br><br>
+  Now let's get started on the shader, I wanted both the effect of clear blue water in the center, while appearing very opaque, and eventually white-ish near the edge of the water, or in our case the horizon, this is what my shader ended up looking like:</p>
+
+  <img src="..\Media\low-poly-island\watershader.jpg" alt="">
+
+  <p>I used the same color for the glass and diffuse shaders, but the white shader was mixed with a little pure white. I used a fresnel to get the horizon effect I was going for. Lastly the IOR value on the glass shader will change the transparency of the water, I found that 21 was a really good value for my scene. If you notice fireflies in you water I found that either putting a point light in the water where the fireflies were, or just letting it render with a ton of samples.</p>
+
+
+  <h1>Making the Skybox</h1>
+
+  <p>I used gimp to create a fade effect for the sky, another thing you can do is create that in a shader if your really fancy. <a href="https://github.com/PossiblyAShrub/Low-Poly-Island-Skyboxes" target="_blank">Here's a link to download my skies.</a> If you want to create your own skies, all I did was create a really wide blank image, and then used the gradient tool to make the fade. The effect is super apparent in this morning render</p>
+
+  <img src="..\Media\low-poly-island\hdrcomparison.jpg" alt="">
+
+  <p>One last thing I did was I found it quite difficult to get really nice cartoon-y stars in a skybox, instead I made small spheres with a white glow.</p>
+
+  <img src="..\Media\low-poly-island\sneakytricknum1.jpg" alt="">
+
+  <p>Another sneaky trick to prevent different areas from getting light is setting up large planes out of the view from the camera, I did this so I could get a very orange sky for my evening scene, while still giving the illusion of the light coming from one direction </p>
+
+  <img src="..\Media\low-poly-island\sneakytricknum2.jpg" alt="">
+
+
+  <p>This is what my final results looked like, I’m very curious what you end up creating from this, feel free to post on instagram and tag me <a href="https://www.instagram.com/aro.games/?hl=en">@aro.games</a>, maybe I will give you a shoutout…</p>
+
+  <img src="..\Media\low-poly-island\thumbnail.jpg" alt="">
+
+</div>
