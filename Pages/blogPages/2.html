@@ -12,12 +12,12 @@
 
   <h3>Table of Contents</h3>
   <ul>
-    <li>Making the island</li>
-    <li>Making the water</li>
-    <li>Adding our skybox</li>
+    <li><a href="#1">Making the island</a></li>
+    <li><a href="#2">Making the water</a></li>
+    <li><a href="#3">Adding our skybox</a></li>
   </ul>
 
-  <h1>Making the Island</h1>
+  <h1 id="1">Making the Island</h1>
 
   <p>To start I deleted everything, I also switched to cycles, and then created an icosphere</p>
 
@@ -40,7 +40,7 @@
   <img src="..\Media\low-poly-island\applying-mats.gif" alt="">
 
 
-  <h1>Making the Water</h1>
+  <h1 id="2">Making the Water</h1>
 
   <p>Our water is going to be comprised of two parts, our wave displacement, and the water shader. Let's start with the displacement. First of all we will need a nice water box like the one below:</p>
 
@@ -67,7 +67,7 @@
   <p>I used the same color for the glass and diffuse shaders, but the white shader was mixed with a little pure white. I used a fresnel to get the horizon effect I was going for. Lastly the IOR value on the glass shader will change the transparency of the water, I found that 21 was a really good value for my scene. If you notice fireflies in you water I found that either putting a point light in the water where the fireflies were, or just letting it render with a ton of samples.</p>
 
 
-  <h1>Making the Skybox</h1>
+  <h1 id="3">Making the Skybox</h1>
 
   <p>I used gimp to create a fade effect for the sky, another thing you can do is create that in a shader if your really fancy. <a href="https://github.com/PossiblyAShrub/Low-Poly-Island-Skyboxes" target="_blank">Here's a link to download my skies.</a> If you want to create your own skies, all I did was create a really wide blank image, and then used the gradient tool to make the fade. The effect is super apparent in this morning render</p>
 
