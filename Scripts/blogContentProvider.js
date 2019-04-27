@@ -166,7 +166,7 @@ function makeCards() {
     </div>
     <!-- End Card -->
     `;
-    document.getElementById("cards").innerHTML += card;
+    document.getElementById("cards").innerHTML = card + document.getElementById("cards").innerHTML;
   }
 }
 
