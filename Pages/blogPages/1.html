@@ -262,10 +262,19 @@ You can delete the appdata struct, we will use a default one so there is no need
                 o<span style="color:#806030; ">.</span>pos <span style="color:#806030; ">=</span> UnityObjectToClipPos<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
                 <span style="color:#c34e00; ">// use ComputeGrabScreenPos function from UnityCG.cginc</span>
                 <span style="color:#c34e00; ">// to get the correct texture coordinate</span>
-                o<span style="color:#806030; ">.</span>grabPos <span style="color:#806030; ">=</span> ComputeGrabScreenPos<span style="color:#806030; ">(</span>o<span style="color:#806030; ">.</span>pos<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+                o<span style="color:#806030; ">.</span>uv <span style="color:#806030; ">=</span> ComputeGrabScreenPos<span style="color:#806030; ">(</span>o<span style="color:#806030; ">.</span>pos<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
                 <span style="color:#400000; font-weight:bold; ">return</span> o<span style="color:#806030; ">;</span>
             <span style="color:#806030; ">}</span>
 </pre>
+<p>We also need to change the v2f struct to this:</p>
+
+<pre style="color:#000000;background:#f1f0f0;">			<span style="color:#400000; font-weight:bold; ">struct</span> v2f
+			<span style="color:#806030; ">{</span>
+				float4 uv <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+				float4 pos <span style="color:#806030; ">:</span> SV_POSITION<span style="color:#806030; ">;</span>
+			<span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+</pre>
+
 <p>Now if we save everything and move back into unity:</p>
   <img src="" alt="process"> <!-- TODO: Get picture -->
 <p>You will realize pretty quick that the cube has disappeared, this is because we are just showing whats behind our cube, and it looks like nothing is there, or in other words we just made a perfectly transparent material. Now we want to find a way to turn this background texture into a black and white texture, making the cube a black and white filter. Let’s head back to the shader.
