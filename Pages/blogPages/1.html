@@ -295,5 +295,60 @@ Right now I want to make a separate step where we apply a filter, so lets create
 </pre>
 <p>There we go, with a little camera animation we have our final filter, try playing around with mixing different color channels together, using different averaging techniques, or making entire color channels a set number.</p>
   <img src="..\Media\Black and White filter post media\final.jpg" alt="result picture">
+  <p>Here is also the final shader code.</p>
+
+<pre style="color:#000000;background:#f1f0f0;">Shader <span style="color:#800000; ">"</span><span style="color:#e60000; ">Custom/Vert + Frag/Color Filter Shader</span><span style="color:#800000; ">"</span>
+<span style="color:#806030; ">{</span>
+	SubShader
+	<span style="color:#806030; ">{</span>
+		<span style="color:#c34e00; ">// Draw ourselves after all opaque geometry</span>
+		Tags <span style="color:#806030; ">{</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">Queue</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">=</span> <span style="color:#800000; ">"</span><span style="color:#e60000; ">Transparent</span><span style="color:#800000; ">"</span> <span style="color:#806030; ">}</span>
+
+		<span style="color:#c34e00; ">// Grab the screen behind the object into _BackgroundTexture</span>
+		GrabPass
+		<span style="color:#806030; ">{</span>
+			<span style="color:#800000; ">"</span><span style="color:#e60000; ">_BackgroundTexture</span><span style="color:#800000; ">"</span>
+		<span style="color:#806030; ">}</span>
+
+		Pass
+		<span style="color:#806030; ">{</span>
+			CGPROGRAM
+<span style="color:#004a43; ">			</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> vertex vert</span>
+<span style="color:#004a43; ">			</span><span style="color:#004a43; ">#</span><span style="color:#004a43; font-weight:bold; ">pragma</span><span style="color:#bb7977; font-weight:bold; "> fragment frag</span>
+<span style="color:#004a43; ">			</span><span style="color:#004a43; ">#</span><span style="color:#004a43; ">include </span><span style="color:#800000; ">"</span><span style="color:#40015a; ">UnityCG.cginc</span><span style="color:#800000; ">"</span>
+
+			<span style="color:#400000; font-weight:bold; ">struct</span> v2f
+			<span style="color:#806030; ">{</span>
+				float4 grabPos <span style="color:#806030; ">:</span> TEXCOORD0<span style="color:#806030; ">;</span>
+				float4 pos <span style="color:#806030; ">:</span> SV_POSITION<span style="color:#806030; ">;</span>
+			<span style="color:#806030; ">}</span><span style="color:#806030; ">;</span>
+
+			v2f vert<span style="color:#806030; ">(</span>appdata_base v<span style="color:#806030; ">)</span> <span style="color:#806030; ">{</span>
+				v2f o<span style="color:#806030; ">;</span>
+				<span style="color:#c34e00; ">// use UnityObjectToClipPos from UnityCG.cginc to calculate </span>
+				<span style="color:#c34e00; ">// the clip-space of the vertex</span>
+				o<span style="color:#806030; ">.</span>pos <span style="color:#806030; ">=</span> UnityObjectToClipPos<span style="color:#806030; ">(</span>v<span style="color:#806030; ">.</span>vertex<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+				<span style="color:#c34e00; ">// use ComputeGrabScreenPos function from UnityCG.cginc</span>
+				<span style="color:#c34e00; ">// to get the correct texture coordinate</span>
+				o<span style="color:#806030; ">.</span>grabPos <span style="color:#806030; ">=</span> ComputeGrabScreenPos<span style="color:#806030; ">(</span>o<span style="color:#806030; ">.</span>pos<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span>
+				<span style="color:#400000; font-weight:bold; ">return</span> o<span style="color:#806030; ">;</span>
+			<span style="color:#806030; ">}</span>
+
+			sampler2D _BackgroundTexture<span style="color:#806030; ">;</span>
+
+			half4 frag<span style="color:#806030; ">(</span>v2f i<span style="color:#806030; ">)</span> <span style="color:#806030; ">:</span> SV_Target
+			<span style="color:#806030; ">{</span>
+				half4 bgcolor <span style="color:#806030; ">=</span> tex2Dproj<span style="color:#806030; ">(</span>_BackgroundTexture<span style="color:#806030; ">,</span> i<span style="color:#806030; ">.</span>grabPos<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span> <span style="color:#c34e00; ">//map bg colors from texture</span>
+				<span style="color:#400000; font-weight:bold; ">float</span> avg <span style="color:#806030; ">=</span> bgcolor<span style="color:#806030; ">.</span>r <span style="color:#806030; ">+</span> bgcolor<span style="color:#806030; ">.</span>g <span style="color:#806030; ">+</span> bgcolor<span style="color:#806030; ">.</span>b <span style="color:#806030; ">/</span> <span style="color:#800000; ">3.5</span><span style="color:#806030; ">;</span> <span style="color:#c34e00; ">// get average of all colors</span>
+				bgcolor<span style="color:#806030; ">.</span>rgb <span style="color:#806030; ">=</span> float3<span style="color:#806030; ">(</span>avg<span style="color:#806030; ">,</span> avg<span style="color:#806030; ">,</span> avg<span style="color:#806030; ">)</span><span style="color:#806030; ">;</span> <span style="color:#c34e00; ">// applying b+w filter</span>
+				<span style="color:#400000; font-weight:bold; ">return</span> bgcolor<span style="color:#806030; ">;</span>
+			<span style="color:#806030; ">}</span>
+			ENDCG
+		<span style="color:#806030; ">}</span>
+
+	<span style="color:#806030; ">}</span>
+<span style="color:#806030; ">}</span>
+</pre>
+
   <p>Have fun!</p>
 </div>
